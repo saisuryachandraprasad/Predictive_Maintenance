@@ -1,0 +1,5 @@
+pandas 
+numpy
+cassandra-driver==3.28.0
+
+-e .
