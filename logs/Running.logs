@@ -1,0 +1,2 @@
+[2023-12-04 21:25:12,364 - INFO - main] - Test logging
+[2023-12-04 22:34:03,816 - INFO - main] - Error occured in python script [D:\projects\Predictive_Maintenance\main.py] at line number [9] and message is [division by zero]
