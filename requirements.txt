@@ -1,6 +1,7 @@
 pandas 
 numpy
 pymongo[srv]
+pymongo
 python-dotenv
 seaborn
 matplotlib

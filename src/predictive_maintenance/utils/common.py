@@ -1,23 +1,25 @@
 from src.predictive_maintenance import logger
 from exception import CustomException
-from dotenv import load_dotenv
 from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+import pandas as pd
 import os
 import sys
 
 load_dotenv()
-uri = os.getenv("uri")
+uri=os.getenv("uri")
 
-def connect_to_database():
-    # Create a new client and connect to the server
-    client = MongoClient(uri, server_api=ServerApi('1'))
+def reading_data_from_database():
+        try:
+            logger.info("Reading data from database is strated")
+            client = MongoClient(uri)
+            database = client['PredictiveMaintenance']
+            collection = database['PredictiveMaintenance']
+            data = collection.find({})
+            df = pd.DataFrame(data)
+            logger.info("Complted reading data from database")
 
-    # Send a ping to confirm a successful connection
-    try:
-        client["use predictive_maintenance"]
-        logger.info("Pinged your deployment. You successfully connected to MongoDB!")
-    except Exception as e:
-        logger.info(CustomException(e,sys))
-        raise CustomException(e,sys)
-        
+            return df      
+        except Exception as e:
+              logger.info(CustomException(e,sys))
+              raise CustomException(e,sys)
